@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Param, ParseIntPipe, Delete, Patch } from 
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UsuariosService } from './usuarios.service';
 import { User } from './usuarios.entity';
-import { updateUsuarioDto } from './dto/update-usuario.dto';
+import { UpdateUsuarioDto } from './dto/update-usuario.dto'; // Cambia aquí
 
 @Controller('usuarios')
 export class UsuariosController {
@@ -18,20 +18,18 @@ export class UsuariosController {
         return this.usuarioService.getUsuario(id);
     }
 
-
     @Post()
-    async createUsuario(@Body() newUsuario: CreateUsuarioDto){
+    async createUsuario(@Body() newUsuario: CreateUsuarioDto) {
         return this.usuarioService.createUsuario(newUsuario);
     }
 
     @Delete(':id')
-    async deleteUsuario(@Param ('id', ParseIntPipe) id: number){
-       return this.usuarioService.deleteUsuario(id)
+    async deleteUsuario(@Param('id', ParseIntPipe) id: number) {
+        return this.usuarioService.deleteUsuario(id);
     }
 
     @Patch(':id')
-    async updateUsuario(@Param ('id', ParseIntPipe) id:number, @Body()
-    user: updateUsuarioDto){
-      return this.usuarioService.updateUsuario(id, user)
+    async updateUsuario(@Param('id', ParseIntPipe) id: number, @Body() user: UpdateUsuarioDto) { // Cambia aquí
+        return this.usuarioService.updateUsuario(id, user);
     }
 }
